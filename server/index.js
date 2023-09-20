@@ -11,7 +11,7 @@ app.get("/summary/:id", async (req, res) => {
   const idVideo = req.params.id
 
   await download(idVideo)
-  const result = transcribe()
+  const result = await transcribe()
 
   return res.json({ result })
 })

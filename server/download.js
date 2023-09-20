@@ -22,10 +22,14 @@ export const download = (videoID) =>
       })
       .on("end", () => {
         console.log("Download finalizado!")
+        resolve()
       })
       .on("error", (err) => {
-        "Não foi possível fazer o download desse vídeo. Detalhes do Error: ",
+        console.log(
+          "Não foi possível fazer o download desse vídeo. Detalhes do Error: ",
           err
+        )
+        reject()
       })
       .pipe(fs.createWriteStream("./tmp/audio.mp4"))
   })
