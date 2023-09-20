@@ -2,16 +2,18 @@ import cors from "cors"
 import express from "express"
 
 import { download } from "./download.js"
+import { transcribe } from "./transcribe.js"
 
 const app = express()
 app.use(cors())
 
-app.get("/summary/:id", (req, res) => {
+app.get("/summary/:id", async (req, res) => {
   const idVideo = req.params.id
 
-  download(idVideo)
+  await download(idVideo)
+  const result = transcribe()
 
-  return res.json({ results: "Download realizado com sucesso" })
+  return res.json({ result })
 })
 
 app.listen(3333, () => console.log("Server is Working!"))

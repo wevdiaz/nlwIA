@@ -1,0 +1,2 @@
+export const transcriptionExample =
+  "Aqui será um teste de tradução de vídeo para exemplificar o uso da IA para realizar esse recurso. O Javascript é uma linguagem de programação voltada para o desenvolvimento web, criado originalmente para funcionar do lado do usuário, ou seja, nos navegadores. Junto do HTML e do CSS, é uma das principais tecnologias da web permitindo a criação de páginas interativas com elementos dinâmicos."
