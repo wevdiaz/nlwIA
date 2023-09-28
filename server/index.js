@@ -1,6 +1,7 @@
 import cors from "cors"
 import express from "express"
 
+import { convert } from "./convert.js"
 import { download } from "./download.js"
 import { transcribe } from "./transcribe.js"
 import { summarize } from "./summarize.js"
@@ -14,6 +15,10 @@ app.get("/summary/:id", async (req, res) => {
   const idVideo = req.params.id
 
   await download(idVideo)
+  const audioConverted = await convert()
+
+  console.log(audioConverted)
+
   const result = await transcribe()
 
   return res.json({ result })
