@@ -12,22 +12,28 @@ app.use(express.json())
 app.use(cors())
 
 app.get("/summary/:id", async (req, res) => {
-  const idVideo = req.params.id
+  try {
+    const idVideo = req.params.id
 
-  await download(idVideo)
-  const audioConverted = await convert()
+    await download(idVideo)
+    const audioConverted = await convert()
 
-  console.log(audioConverted)
+    const result = await transcribe(audioConverted)
 
-  const result = await transcribe()
-
-  return res.json({ result })
+    return res.json({ result })
+  } catch (error) {
+    return res.json({ error })
+  }
 })
 
 app.post("/summary", async (req, res) => {
-  const result = await summarize(req.body.text)
+  try {
+    const result = await summarize(req.body.text)
 
-  return res.json({ result: result })
+    return res.json({ result: result })
+  } catch (error) {
+    return res.json({ error })
+  }
 })
 
 app.listen(3333, () => console.log("Server is Working!"))
